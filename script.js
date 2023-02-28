@@ -14,6 +14,15 @@
 //Handling clickk events using dom in js
 let number = Math.trunc(Math.random() * 20) + 1;
 let score = 20 , highScore = 0;
+const updateScore = function () {
+  if (score > 1) {
+    score--;
+    document.querySelector('.score').textContent = score;
+  } else {
+    document.querySelector('.score').textContent = 0;
+    document.querySelector('.message').textContent = 'You Loose The Game 💥';
+  }
+};
 
 document.querySelector('.check').addEventListener('click', function () {
   const guessNumber = Number(document.querySelector('.guess').value);
@@ -35,22 +44,10 @@ document.querySelector('.check').addEventListener('click', function () {
     document.querySelector('.number').textContent = number;
   } else if (guessNumber > number) {
     document.querySelector('.message').textContent = 'The Number is Smaller!';
-    if (score > 1) {
-      score--;
-      document.querySelector('.score').textContent = score;
-    } else {
-      document.querySelector('.score').textContent = 0;
-      document.querySelector('.message').textContent = 'You Loose The Game 💥';
-    }
+    updateScore();
   } else if (guessNumber < number) {
     document.querySelector('.message').textContent = 'The Number is Greater!';
-    if (score > 1) {
-      score--;
-      document.querySelector('.score').textContent = score;
-    } else {
-      document.querySelector('.score').textContent = 0;
-      document.querySelector('.message').textContent = 'You Loose The Game 💥';
-    }
+    updateScore();
   }
 });
 document.querySelector('.again').addEventListener('click', function () {
